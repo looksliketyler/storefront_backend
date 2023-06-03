@@ -1,0 +1,1 @@
+CREATE TABLE orders (id SERIAL PRIMARY KEY, product_ids ARRAY, product_quantities INTEGER, user_id VARCHAR, status VARCHAR, products JSON);

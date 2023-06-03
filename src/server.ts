@@ -1,15 +1,29 @@
-import express, { Request, Response } from 'express'
-import bodyParser from 'body-parser'
+import express, { Application, Request, Response } from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import 'dotenv/config';
+import orderRoutes from './handlers/orderHandler';
+import userRoutes from './handlers/userHandler';
+import productRoutes from './handlers/productHandler';
 
-const app: express.Application = express()
-const address: string = "0.0.0.0:3000"
+const app: Application = express();
+const address: string = "0.0.0.0:3000";
+app.use(bodyParser.json());
 
-app.use(bodyParser.json())
+const corsOptions = {
+  origin: 'http://someotherdomain.com',
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 
-app.get('/', function (req: Request, res: Response) {
-    res.send('Hello World!')
-})
+app.get('/', function (_req: Request, res: Response) {
+  res.send('Hello World!');
+});
+
+orderRoutes(app);
+userRoutes(app);
+productRoutes(app);
 
 app.listen(3000, function () {
-    console.log(`starting app on: ${address}`)
-})
+  console.log(`starting app on: ${address}`);
+});

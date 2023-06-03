@@ -4,39 +4,39 @@ The company stakeholders want to create an online storefront to showcase their g
 These are the notes from a meeting with the frontend developer that describe what endpoints the API needs to supply, as well as data shapes the frontend and backend have agreed meet the requirements of the application. 
 
 ## API Endpoints
-#### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+### Products
+- Index route - '/getAllProducts' - [GET]
+- Show route - '/getProduct/:id' - [GET]
+- Create [token required] - '/createProduct' - [POST]
+  - Payload - { name: string, price: string }
 
-#### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+### Users
+- Index [token required] - '/getAllUsers/:token' = [GET]
+- Show [token required] - '/getUserData/:username/:token' - [GET]
+- Create - '/createUser' - [POST]
+  - Payload - { firstname: string, lastname: string, username: string, password: string }
 
-#### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+### Orders
+- Show route - [token required] - '/getCurrentOrder/:username/:token - [GET]
+- Create an order - '/createOrder' - [POST]
+  - Payload - { productsInOrder: [ { name: string, price: string, id: number } ], status: string ('active or complete will be sent') }
 
-## Data Shapes
-#### Product
--  id
-- name
-- price
-- [OPTIONAL] category
+  ## Data Shapes for DB
 
-#### User
-- id
-- firstName
-- lastName
-- password
+  ### Product - 'TABLE products'
+  - name: VARCHAR(50)
+  - price: VARCHAR(50)
+  - id: SERIAL PRIMARY KEY
+  ### User - 'TABLE users'
+  - firstname: VARCHAR(50)
+  - lastname: VARCHAR(50)
+  - password: VARCHAR(50)
+  - token: VARCHAR
 
-#### Orders
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
-
+  ### Order - 'TABLE orders'
+  - id: SERIAL PRIMARY KEY
+  - prduct_ids: ARRAY
+  - product_quantities: INTEGER
+  - user_id: VARCHAR
+  - status: VARCHAR
+  - products: JSON

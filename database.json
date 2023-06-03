@@ -1,0 +1,16 @@
+{
+  "dev": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "scifi_merch_dev",
+    "user": "postgres",
+    "password": {"ENV": "POSTGRES_PASSWORD"}
+  },
+  "test": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "scifi_merch_test",
+    "user": "postgres",
+    "password": {"ENV": "POSTGRES_PASSWORD"}
+  }
+}
