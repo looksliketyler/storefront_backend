@@ -21,22 +21,20 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Create an order - '/createOrder' - [POST]
   - Payload - { productsInOrder: [ { name: string, price: string, id: number } ], status: string ('active or complete will be sent') }
 
-  ## Data Shapes for DB
-
-  ### Product - 'TABLE products'
-  - name: VARCHAR(50)
-  - price: VARCHAR(50)
-  - id: SERIAL PRIMARY KEY
-  ### User - 'TABLE users'
-  - firstname: VARCHAR(50)
-  - lastname: VARCHAR(50)
-  - password: VARCHAR(50)
-  - token: VARCHAR
-
-  ### Order - 'TABLE orders'
-  - id: SERIAL PRIMARY KEY
-  - prduct_ids: ARRAY
-  - product_quantities: INTEGER
-  - user_id: VARCHAR
-  - status: VARCHAR
-  - products: JSON
+## Data Shapes for DB
+### Product - 'TABLE products'
+- name: VARCHAR(50)
+- price: VARCHAR(50)
+- id: SERIAL PRIMARY KEY
+### User - 'TABLE users'
+- firstname: VARCHAR(50)
+- lastname: VARCHAR(50)
+- password: VARCHAR(50)
+- token: VARCHAR
+### Order - 'TABLE orders'
+- id: SERIAL PRIMARY KEY
+- prduct_ids: ARRAY
+- product_quantities: INTEGER
+- user_id: VARCHAR
+- status: VARCHAR
+- products: JSON
