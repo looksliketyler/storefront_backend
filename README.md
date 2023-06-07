@@ -16,3 +16,13 @@ Start by installing dependences
 ## Relevant Info
 This project connects to a database for housing scifi merch
 - A user can be created, and this user will be able to view products and orders.
+
+## ENV
+- Will need a .env at root directory file with following setup
+  - POSTGRES_HOST=127.0.0.1
+  - POSTGRES_DB=scifi_merch_dev
+  - POSTGRES_TEST_DB=scifi_merch_test
+  - POSTGRES_USER=(postgres user)
+  - POSTGRES_PASSWORD=(your password)
+  - ENV=dev
+  - TOKEN=(token to pass to jwt)
