@@ -1,1 +1,1 @@
-CREATE TABLE orders (id SERIAL PRIMARY KEY, product_ids ARRAY, product_quantities INTEGER, user_id VARCHAR, status VARCHAR, products JSON);
+CREATE TABLE orders (id SERIAL PRIMARY KEY, product_ids JSON, product_quantities JSON, user_id INTEGER REFERENCES users (id), status VARCHAR(255), products JSON);

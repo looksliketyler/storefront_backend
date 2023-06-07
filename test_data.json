@@ -1,0 +1,167 @@
+{
+  "orderModelData": {
+    "mockOrderRequest": {
+      "id": 8851647,
+      "productIds": [7664986, 5470589, 6874093],
+      "productQuantities": 3,
+      "productsInOrder": [
+        {
+          "name": "Goa'uld Staff Weapon",
+          "price": "149.99",
+          "id": 7664986
+        },
+        {
+          "name": "Medical Tricorder - Voyager",
+          "price": "69.99",
+          "id": 5470589
+        },
+        {
+          "name": "Tricorder - TNG",
+          "price": "99.99",
+          "id": 6874093
+        }
+      ],
+      "status": "active"
+    },
+    "mockOrderResponse": {
+      "id": 8851647,
+      "product_ids": [7664986, 5470589, 6874093],
+      "user_id": null,
+      "status": "active",
+      "product_quantities": 3,
+      "products": [
+        {
+          "name": "Goa'uld Staff Weapon",
+          "price": "149.99",
+          "id": 7664986
+        },
+        {
+          "name": "Medical Tricorder - Voyager",
+          "price": "69.99",
+          "id": 5470589
+        },
+        {
+          "name": "Tricorder - TNG",
+          "price": "99.99",
+          "id": 6874093
+        }
+      ]
+    }
+  },
+  "orderHandlerData": {
+    "mockPostRequest": {
+      "productsInOrder": [
+        {
+          "name": "Goa'uld Staff Weapon",
+          "price": "149.99",
+          "id": 7664986
+        },
+        {
+          "name": "Medical Tricorder - Voyager",
+          "price": "69.99",
+          "id": 5470589
+        },
+        {
+          "name": "Tricorder - TNG",
+          "price": "99.99",
+          "id": 6874093
+        }
+      ],
+      "status": "active"
+    },
+    "mockOrderResponse": {
+      "id": null,
+      "product_ids": [7664986, 5470589, 6874093],
+      "product_quantities": 3,
+      "user_id": null,
+      "status": "active",
+      "products": [
+        {
+          "name": "Goa'uld Staff Weapon",
+          "price": "149.99",
+          "id": 7664986
+        },
+        {
+          "name": "Medical Tricorder - Voyager",
+          "price": "69.99",
+          "id": 5470589
+        },
+        {
+          "name": "Tricorder - TNG",
+          "price": "99.99",
+          "id": 6874093
+        }
+      ],
+      "message": ""
+    }
+  },
+  "userModelData": {
+    "preTestAndGlobalUsers": [
+      {
+        "id": 7493691,
+        "firstname": "Katherine",
+        "lastname": "Janeway",
+        "username": "CruisingDelta",
+        "password": "janeway1153red"
+      },
+      {
+        "id": 7493692,
+        "firstname": "Benjamin",
+        "lastname": "Sikso",
+        "username": "EmissaryDS9",
+        "password": "siskoa471"
+      }
+    ],
+    "userInfoToCreate": {
+      "id": 7493693,
+      "firstname": "Beverly",
+      "lastname": "Crusher",
+      "username": "BestDoctorInStarfleet",
+      "password": "crusher22bc"
+    },
+    "userInfoCreated": {
+      "firstname": "Beverly",
+      "lastname": "Crusher",
+      "username": "BestDoctorInStarfleet",
+      "token": null,
+      "userId": 7493693
+    }
+  },
+  "userHandlerData": {
+    "mockUserData": {
+      "postRequestBody": {
+        "firstname": "Jean-Luc",
+        "lastname": "Picard",
+        "username": "BestEnterpriseCaptain1701",
+        "userId": 7493698,
+        "password": "picard47"
+      },
+      "successfulCreationMessage": "Created new user BestEnterpriseCaptain1701. Please save the returned token for future use."
+    }
+  },
+  "productModelData": {
+    "mockProducts": [
+      {
+        "name": "Medical Tricorder - Voyager",
+        "price": "69.99",
+        "id": 5470589
+      },
+      {
+        "name": "Tricorder - TNG",
+        "price": "99.99",
+        "id": 6874093
+      }
+    ]
+  },
+  "productHandlerData": {
+    "mockCreateProductRequest": {
+      "name": "Goa'uld Staff Weapon",
+      "price": "149.99"
+    },
+    "mockSingleProductResponse": {
+      "id": null,
+      "name": "Goa'uld Staff Weapon",
+      "price": "149.99"
+    }
+  }
+}

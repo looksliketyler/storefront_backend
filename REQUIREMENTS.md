@@ -23,18 +23,26 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## Data Shapes for DB
 ### Product - 'TABLE products'
-- name: VARCHAR(50)
-- price: VARCHAR(50)
+- name: VARCHAR(255)
+- price: VARCHAR(255)
 - id: SERIAL PRIMARY KEY
 ### User - 'TABLE users'
-- firstname: VARCHAR(50)
-- lastname: VARCHAR(50)
-- password: VARCHAR(50)
-- token: VARCHAR
+- id: SERIAL PRIMARY KEY
+- firstname: VARCHAR(255)
+- lastname: VARCHAR(255)
+- username: VARCHAR(255)
+- password: VARCHAR(255)
+- token: VARCHAR(255)
 ### Order - 'TABLE orders'
 - id: SERIAL PRIMARY KEY
-- prduct_ids: ARRAY
+- product_ids: JSON
 - product_quantities: INTEGER
-- user_id: VARCHAR
-- status: VARCHAR
+- user_id: INTEGER - FOREIGN KEY - REFERENCES User (id)
+- status: VARCHAR(255)
 - products: JSON
+
+### OrderProduct - 'TABLE order_products'
+- id: SERIAL PRIMARY KEY
+- user_id: INTEGER - FOREIGN KEY - REFERENCES User (id)
+- product_id: INTEGER - FOREIGN KEY - REFERENCES Product (id)
+- quantity: INTEGER

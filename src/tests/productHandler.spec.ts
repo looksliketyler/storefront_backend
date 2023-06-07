@@ -1,34 +1,37 @@
 import express from 'express';
 import request from 'supertest';
 import bodyParser from 'body-parser';
+import fs from 'fs';
+import path from 'path';
+
 import productRoutes from '../handlers/productHandler';
 import { ProductTable } from '../models/product';
+import { UserTable } from '../models/user';
 
 const app = express();
 app.use(bodyParser.json());
 productRoutes(app);
 
-const mockProductData = {
-  mockCreateProductRequest: {
-    name: 'Gou\'uld Staff Weapon',
-    price: '149.99'
-  },
-  mockSingleProductResponse: {
-    name: 'Medical Tricorder - Voyager',
-    price: '99.99',
-    id: 6874093
-  }
-};
+const testDataPath = path.join(__dirname, '../../test_data.json');
+const testData = JSON.parse(fs.readFileSync(testDataPath, 'utf8'));
+
+const mockProductData = testData.productHandlerData;
+let productIdParam: string;
 
 describe('productHandler.js', () => {
   it('should have a productRoutes function', () => {
     expect(productRoutes).toBeDefined();
   });
 
-  it('should hit createProduct enpoint yet return unauthorized user due to no token', async () => {
+  it('should create a new product', async () => {
+    const userTable = new UserTable();
+    const users = await userTable.index();
+    const token = users[0].token;
+    mockProductData.mockCreateProductRequest.token = token;
     const response = await request(app).post('/createProduct').send(mockProductData.mockCreateProductRequest);
-    expect(response.status).toBe(401);
-    expect(response.body).toEqual('Unauthorized user.'); // 
+    productIdParam = response.body.id.toString();
+    expect(response.status).toBe(200);
+    expect(response.body.id).toBeTruthy();;
   });
 
   it('should get all products returned', async () => {
@@ -38,7 +41,8 @@ describe('productHandler.js', () => {
   });
 
   it('should get a single product by passing an id', async () => {
-    const response = await request(app).get(`/getProduct/6874093`);
+    mockProductData.mockSingleProductResponse.id = +productIdParam;
+    const response = await request(app).get(`/getProduct/${productIdParam}`);
     expect(response.status).toBe(200);
     expect(response.body).toEqual(mockProductData.mockSingleProductResponse);
     // last test for product table, clearing db

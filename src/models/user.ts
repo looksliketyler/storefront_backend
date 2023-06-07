@@ -1,4 +1,5 @@
 import { Secret } from 'jsonwebtoken';
+
 import client from '../database';
 
 export type User = {
@@ -21,7 +22,7 @@ export class UserTable {
    * @description - calls database to select all info from users table
    * @returns {Promise<User[]>} - array of users
    */
-  public async index(): Promise<User[]> {
+  async index(): Promise<User[]> {
     try {
       const connection = await client.connect();
       const sql = 'SELECT * from users';
@@ -46,7 +47,7 @@ export class UserTable {
       connection.release();
       return result.rows[0];
     } catch (err) {
-        throw new Error(`Could not find user ${username}. Error: ${err}`)
+      throw new Error(`Could not find user ${username}. Error: ${err}`)
     }
   }
 
@@ -66,7 +67,8 @@ export class UserTable {
         firstname: newUser.firstname,
         lastname: newUser.lastname,
         username: newUser.username,
-        token: newUser.token
+        token: newUser.token,
+        userId: newUser.id
       };
       return userToReturn;
     } catch (err) {

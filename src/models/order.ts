@@ -1,12 +1,14 @@
 import client from '../database';
+
 import { Product } from './product';
 
 export type Order = {
   id: number;
   productsInOrder: Product[]
-  productIds: string[];
+  productIds: number[];
+  username: string;
   productQuantities: number,
-  userId: string,
+  userId: number,
   status: string;
 };
 
@@ -54,7 +56,7 @@ export class OrderTable {
     try {
       const connection = await client.connect();
       const sql = 'INSERT INTO orders (id, product_ids, product_quantities, status, user_id, products) VALUES($1, $2, $3, $4, $5, $6) RETURNING *';
-      const result = await connection.query(sql, [order.id, order.productIds, order.productQuantities, order.status, order.userId, JSON.stringify(order.productsInOrder)]);
+      const result = await connection.query(sql, [order.id, JSON.stringify(order.productIds), order.productQuantities, order.status, order.userId, JSON.stringify(order.productsInOrder)]);
       const neworder = result.rows[0]; 
       connection.release();
       return neworder;

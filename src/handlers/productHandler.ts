@@ -1,5 +1,6 @@
 import { Request, Response, Application } from "express";
 import jwt, { Secret } from 'jsonwebtoken';
+
 import { Product, ProductTable } from '../models/product';
 
 const productTable: ProductTable = new ProductTable();

@@ -1,6 +1,7 @@
 import { Application, Request, Response } from 'express';
 import jwt, { Secret } from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+
 import { ReturnedUserObj, User, UserTable } from '../models/user';
 
 const userTable: UserTable = new UserTable();
@@ -58,8 +59,9 @@ const create = async (req: Request, res: Response): Promise<void> => {
       lastname: req.body.lastname,
       username: req.body.username,
       id: Math.floor(Math.random() * 10e6),
-      password: bcrypt.hash(req.body.password, 10)
+      password: await bcrypt.hash(req.body.password, 10)
     };
+    
     // create seperate payload for jwt
     const jwtUserPayload: User = {
       firstname: user.firstname,

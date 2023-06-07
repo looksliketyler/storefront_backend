@@ -2,8 +2,8 @@ import express, { Application, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import 'dotenv/config';
-import orderRoutes from './handlers/orderHandler';
 import userRoutes from './handlers/userHandler';
+import orderRoutes from './handlers/orderHandler';
 import productRoutes from './handlers/productHandler';
 
 const app: Application = express();

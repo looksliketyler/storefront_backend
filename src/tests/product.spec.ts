@@ -1,19 +1,14 @@
-import { ProductTable, Product } from '../models/product';
+import fs from 'fs';
+import path from 'path';
+
+import { ProductTable } from '../models/product';
+
+const testDataPath = path.join(__dirname, '../../test_data.json');
+const testData = JSON.parse(fs.readFileSync(testDataPath, 'utf8'));
 
 const productTable = new ProductTable();
 
-const mockProducts = [
-  {
-    name: 'Medical Tricorder - Voyager',
-    price: '99.99',
-    id: 6874093
-  },
-  {
-    name: 'Tricorder - TNG',
-    price: '89.99',
-    id: 3698121
-  }
-];
+const mockProducts = testData.productModelData.mockProducts;
 
 describe('Product model', () => {
   it('should have an index method defined', () => {
